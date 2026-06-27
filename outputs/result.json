@@ -1,0 +1,60 @@
+{
+  "global_seeds": [
+    "round-0",
+    "round-1",
+    "round-2"
+  ],
+  "layout_time_seconds": 0.010269,
+  "policy_time_seconds": 0.377735,
+  "replay_seed": "round-0",
+  "runtime_seconds": 1.227053,
+  "schema_version": 1,
+  "score": 37,
+  "score_breakdown": {
+    "blocked_moves": 41529,
+    "deliveries": 37,
+    "remaining_distance": 8979
+  },
+  "seed_results": [
+    {
+      "global_seed": "round-0",
+      "policy_time_seconds": 0.121352,
+      "replay_saved": true,
+      "runtime_seconds": 0.407724,
+      "score": 11,
+      "score_breakdown": {
+        "blocked_moves": 14195,
+        "deliveries": 11,
+        "remaining_distance": 2817
+      }
+    },
+    {
+      "global_seed": "round-1",
+      "policy_time_seconds": 0.124246,
+      "replay_saved": false,
+      "runtime_seconds": 0.406625,
+      "score": 14,
+      "score_breakdown": {
+        "blocked_moves": 13909,
+        "deliveries": 14,
+        "remaining_distance": 3046
+      }
+    },
+    {
+      "global_seed": "round-2",
+      "policy_time_seconds": 0.121868,
+      "replay_saved": false,
+      "runtime_seconds": 0.402435,
+      "score": 12,
+      "score_breakdown": {
+        "blocked_moves": 13425,
+        "deliveries": 12,
+        "remaining_distance": 3116
+      }
+    }
+  ],
+  "status": "succeeded",
+  "submission_id": "local",
+  "team_name": "local",
+  "ticks": 300
+}

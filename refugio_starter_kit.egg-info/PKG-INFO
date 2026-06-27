@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: refugio-starter-kit
+Version: 0.1.0
+Summary: Local starter kit for the REFUGIO Warehouse Challenge
+Requires-Python: >=3.11

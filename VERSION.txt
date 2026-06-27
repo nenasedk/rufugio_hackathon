@@ -1,0 +1,5 @@
+REFUGIO starter kit
+Built from repository commit: 24c02c393c5f35ecb78f18afd42972505dc2cd3e
+Official server evaluator entrypoint mirrored locally: python -m warehouse.eval_runner
+Public local seeds: round-0, round-1, round-2
+Official scoring seeds: hidden organizer seeds, not included in this zip

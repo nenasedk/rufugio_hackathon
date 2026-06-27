@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>REFUGIO Local Replay Viewer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">REFUGIO</a>
+      <nav>
+        <label class="button secondary local-file-label" for="replayFile">Load JSON</label>
+        <input id="replayFile" type="file" accept="application/json,.json" hidden />
+      </nav>
+    </header>
+
+    <main class="page-stack local-replay-page">
+      <div id="error" class="notice error" hidden></div>
+      <div id="viewerRoot" class="replay-shell" hidden>
+        <section class="stage">
+          <div class="stage-head">
+            <span id="replayName" class="replay-name">Replay</span>
+            <span class="stage-chips">
+              <span id="seedChip" class="chip" hidden></span>
+              <span id="finalChip" class="chip chip-accent">0 deliveries</span>
+            </span>
+          </div>
+          <div id="canvasWrap" class="canvas-wrap">
+            <canvas id="warehouse"></canvas>
+          </div>
+          <div class="transport">
+            <div class="transport-buttons">
+              <button id="startBtn" type="button" title="Go to start (Home)">Start</button>
+              <button id="prevBtn" type="button" title="Previous tick (left arrow)">-1</button>
+              <button id="playBtn" type="button" class="primary">Play</button>
+              <button id="nextBtn" type="button" title="Next tick (right arrow)">+1</button>
+              <button id="endBtn" type="button" title="Go to end (End)">End</button>
+            </div>
+            <input id="tickSlider" class="timeline" type="range" min="0" max="0" value="0" aria-label="Tick" />
+            <span id="tickReadout" class="tick-readout">0 / 0</span>
+            <div id="speedGroup" class="seg-group" role="group" aria-label="Playback speed">
+              <button type="button" data-ms="240">1x</button>
+              <button type="button" data-ms="120" class="active">2x</button>
+              <button type="button" data-ms="60">4x</button>
+              <button type="button" data-ms="30">8x</button>
+            </div>
+            <button id="loopBtn" type="button" class="toggle" aria-pressed="false">Loop</button>
+          </div>
+          <p class="kbd-hints">
+            <kbd>space</kbd> play/pause · <kbd>left</kbd><kbd>right</kbd> +/-1 tick ·
+            <kbd>home</kbd><kbd>end</kbd> jump · scroll to zoom · drag to pan · click a robot
+          </p>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel">
+            <h2>Scoreboard</h2>
+            <div class="score-hero">
+              <div id="deliveriesNow" class="score-value">0</div>
+              <div id="deliveriesDetail" class="score-detail">deliveries</div>
+            </div>
+            <dl id="stats" class="stat-rows"></dl>
+          </section>
+
+          <section class="panel">
+            <h2>Robot</h2>
+            <div id="robotPanel">
+              <p class="robot-empty">Click a robot to inspect it. Click the same cell again to cycle through stacked robots.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>View</h2>
+            <div id="zoomHint" class="robot-empty">Scroll to zoom. Drag to pan when zoomed in.</div>
+            <button id="resetZoomBtn" type="button" class="block-btn" hidden>Reset zoom</button>
+            <label class="control checkbox"><input id="showTargets" type="checkbox" checked /> Target shelves</label>
+            <label class="control checkbox"><input id="showBaseIds" type="checkbox" /> Base IDs</label>
+          </section>
+
+          <section class="panel legend">
+            <h2>Legend</h2>
+            <ul>
+              <li><span class="swatch robot"></span>Robot searching</li>
+              <li><span class="swatch carrying"></span>Robot carrying</li>
+              <li><span class="swatch target"></span>Target shelf</li>
+              <li><span class="swatch shelf"></span>Shelf</li>
+              <li><span class="swatch base"></span>Outer base</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <script type="module" src="./replay-viewer.js"></script>
+  </body>
+</html>

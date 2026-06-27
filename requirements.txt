@@ -1,0 +1,7 @@
+# Third-party packages available in the official evaluator image.
+# The simulator itself has no third-party dependency.
+numpy
+scipy
+networkx
+sortedcontainers
+numba
