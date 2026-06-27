@@ -30,8 +30,10 @@ WALK_MAX = 50
 INF = 1 << 29
 
 # Tunable planner constants (no wall-clock guard; compute is bounded by these).
-WINDOW = 12          # space-time reservation horizon (ticks)
-NODE_CAP = 1200      # max A* expansions per robot before greedy fallback
+# Chosen by offline search on the public seeds; well within the time budget
+# (~10s of the 180s pool across 3 seeds).
+WINDOW = 20          # space-time reservation horizon (ticks)
+NODE_CAP = 4000      # max A* expansions per robot before greedy fallback
 WAIT_CAP = 25        # cap on starvation boost in the priority key
 
 _DIRS = (
