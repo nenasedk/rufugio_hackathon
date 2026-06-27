@@ -36,6 +36,10 @@ WINDOW = 20          # space-time reservation horizon (ticks)
 NODE_CAP = 4000      # max A* expansions per robot before greedy fallback
 WAIT_CAP = 25        # cap on starvation boost in the priority key
 
+# --- experimental: deadline-aware late-game priority ---
+HORIZON = 300            # ticks per seed (fixed by the challenge run shape)
+DEADLINE_AWARE = False   # give right-of-way to robots that can still deliver in time
+
 _DIRS = (
     (Action.UP, 0, -1),
     (Action.DOWN, 0, 1),
@@ -291,6 +295,21 @@ def _plan(brain: _Brain, obs0: Observation) -> None:
         node = _node(*brain.pos[rid])
         remaining = int(goal_field[rid][node])
         boost = min(brain.wait_streak.get(rid, 0), WAIT_CAP)
+        if DEADLINE_AWARE:
+            remaining_time = HORIZON - obs0.tick
+            if carrying:
+                eta = remaining + 1  # reach base entry + DROP
+            else:
+                tgt = brain.target.get(rid)
+                base = brain.base.get(rid)
+                if tgt is not None and base is not None:
+                    ex, ey = _base_entry(*base)
+                    back = abs(tgt[0] - ex) + abs(tgt[1] - ey) - 1
+                    eta = remaining + 2 + (back if back > 0 else 0)  # +PICKUP +DROP
+                else:
+                    eta = remaining + 2
+            can_deliver = 0 if eta <= remaining_time else 1
+            return (can_deliver, 0 if carrying else 1, -boost, remaining, rid)
         return (0 if carrying else 1, -boost, remaining, rid)
 
     movers.sort(key=priority)
